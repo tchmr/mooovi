@@ -27,7 +27,8 @@
                 </li>
               <% end %>
               <li class="entry_button" style="float: right">
-                <a href="/products/search">投稿する</a>
+                <%# <a href="/products/search">投稿する</a> %>
+                <%= link_to "投稿する", "/products/search", data: {"turbolinks" => false} %>
               </li>
             </ul>
           </div>
