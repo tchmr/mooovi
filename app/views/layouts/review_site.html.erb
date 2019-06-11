@@ -18,8 +18,17 @@
               <li class="logo" style="float: left">
                 <a href="/">mooovi</a>
               </li>
+              <% if user_signed_in? %>
+                <li class="entry_button" style="float: right">
+                  <%= link_to "サインアウト", "/users/sign_out", method: :delete %>
+                </li>
+                <li class="entry_button" style="float: right">
+                  <%= link_to "マイページ", "/users/#{current_user.id}", method: :get %>
+                </li>
+              <% end %>
               <li class="entry_button" style="float: right">
-                <a href="/products/search">投稿する</a>
+                <%# <a href="/products/search">投稿する</a> %>
+                <%= link_to "投稿する", "/products/search", data: {"turbolinks" => false} %>
               </li>
             </ul>
           </div>
@@ -32,7 +41,7 @@
               <i class="icon-crown color-gray-light"></i>投稿ランキング
             </h4>
             <ul class="listview listview--condensed text-small">
-              <% [].each.with_index(1) do |product, i| %>
+              <% @ranking.each.with_index(1) do |product, i| %>
               <li data-cinema-id="346394">
                 <a href="/products/<%= product.id %>">
                   <div class="box">
